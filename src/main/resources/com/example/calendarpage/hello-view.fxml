@@ -12,7 +12,7 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
 
-    <!-- Top: Nav Bar -->
+    <!-- Top: Nav Bar hellooooo -->
     <top>
         <VBox>
 
@@ -63,16 +63,18 @@
 
     <!-- Center: Calendar Grid -->
     <center>
-        <GridPane fx:id="calendarGrid" hgap="10" vgap="10" style="-fx-padding: 20;">
-            <!-- Day Labels -->
-            <Label text="Mon" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Label text="Tue" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Label text="Wed" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <Label text="Thu" style="-fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-            <Label text="Fri" style="-fx-font-weight: bold;" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-            <Label text="Sat" style="-fx-font-weight: bold;" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-            <Label text="Sun" style="-fx-font-weight: bold;" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
-        </GridPane>
+        <VBox alignment="CENTER" style="-fx-padding: 20; -fx-vgrow: ALWAYS; -fx-hgrow: ALWAYS;">
+            <GridPane fx:id="calendarGrid" hgap="10" vgap="10" style="-fx-padding: 20; -fx-pref-width: 800; -fx-vgrow: ALWAYS; -fx-hgrow: ALWAYS;">
+                <!-- Day Labels -->
+                <Label text="Mon" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Tue" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Wed" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <Label text="Thu" style="-fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                <Label text="Fri" style="-fx-font-weight: bold;" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+                <Label text="Sat" style="-fx-font-weight: bold;" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+                <Label text="Sun" style="-fx-font-weight: bold;" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+            </GridPane>
+        </VBox>
     </center>
 
 </BorderPane>
