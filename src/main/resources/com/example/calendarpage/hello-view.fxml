@@ -4,10 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+<SplitPane orientation="HORIZONTAL" dividerPositions="0.75" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+    <!-- Left section of the SplitPane (Main Calendar/Content) -->
+    <VBox fx:id="mainContent" style="-fx-padding: 20;">
 
-    <!-- Top Navigation -->
-    <top>
+        <!-- Top Navigation -->
         <VBox>
             <!-- Main Navigation Bar -->
             <HBox spacing="20" style="-fx-background-color: #800080; -fx-padding: 10;">
@@ -15,7 +16,7 @@
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label text="Smart Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="AI" style="-fx-text-fill: white; -fx-background-color: black;"/>
+                <Button text="AI" style="-fx-text-fill: white; -fx-background-color: black;" onAction="#toggleAISidebar"/>
                 <Button text="Settings" style="-fx-text-fill: white; -fx-background-color: black;"/>
                 <Button text="Account" style="-fx-text-fill: white; -fx-background-color: black;"/>
             </HBox>
@@ -35,10 +36,8 @@
                 <RadioButton fx:id="monthRadio" text="Month"/>
             </HBox>
         </VBox>
-    </top>
 
-    <!-- Center content -->
-    <center>
+        <!-- Center content -->
         <StackPane>
             <!-- Week/Month View -->
             <VBox fx:id="weekView" alignment="CENTER" style="-fx-padding: 20;">
@@ -58,6 +57,13 @@
                 </ScrollPane>
             </VBox>
         </StackPane>
-    </center>
+    </VBox>
 
-</BorderPane>
+    <!-- Right section of the SplitPane (AI Sidebar) -->
+    <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="150" maxWidth="600">
+        <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+        <TextArea promptText="Ask me anything..." prefRowCount="6"/>
+        <Button text="Send" />
+    </VBox>
+
+</SplitPane>
