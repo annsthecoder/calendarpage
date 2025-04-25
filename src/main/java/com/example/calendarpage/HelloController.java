@@ -21,6 +21,15 @@ public class HelloController {
     @FXML private VBox weekView;
     @FXML private VBox dayView;
 
+    @FXML private VBox aiSidebar;
+
+    @FXML
+    private void toggleAISidebar() {
+        boolean currentlyVisible = aiSidebar.isVisible();
+        aiSidebar.setVisible(!currentlyVisible);
+        aiSidebar.setManaged(!currentlyVisible);
+    }
+
     @FXML private ToggleGroup viewToggleGroup;
     @FXML private RadioButton dayRadio;
     @FXML private RadioButton weekRadio;
