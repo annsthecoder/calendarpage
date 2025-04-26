@@ -19,6 +19,7 @@
                 <Button text="AI" style="-fx-text-fill: white; -fx-background-color: black;" onAction="#toggleAISidebar"/>
                 <Button text="Settings" style="-fx-text-fill: white; -fx-background-color: black;"/>
                 <Button text="Account" style="-fx-text-fill: white; -fx-background-color: black;"/>
+                <Button text="Friends" style="-fx-text-fill: white; -fx-background-color: black;"/>
             </HBox>
 
             <!-- Month Navigation -->
