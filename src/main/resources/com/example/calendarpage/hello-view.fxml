@@ -16,7 +16,7 @@
                 <ImageView fx:id="logoImage" fitHeight="200" preserveRatio="true" />
 <!--                <Button text="Logo" style="-fx-text-fill: white; -fx-background-color: black;"/>-->
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label text="Smart Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="Ultimate Student Calender" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Region HBox.hgrow="ALWAYS"/>
                 <Button text="AI" style="-fx-text-fill: white; -fx-background-color: black;" onAction="#toggleAISidebar"/>
                 <Button text="Settings" style="-fx-text-fill: white; -fx-background-color: black;"/>
