@@ -10,34 +10,35 @@
            prefHeight="Infinity">
 
     <!-- Left section of the SplitPane (Main Calendar/Content) -->
-    <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0" VBox.vgrow="ALWAYS">
+    <VBox fx:id="mainContent" style="-fx-padding: 20; -fx-background-color: #F0F8FF;" minWidth="0" VBox.vgrow="ALWAYS">
+<!--    <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0" VBox.vgrow="ALWAYS">-->
         <!-- Top Navigation -->
         <VBox>
             <!-- Main Navigation Bar -->
-            <HBox spacing="20" style="-fx-background-color: #800080; -fx-padding: 10;">
+            <HBox spacing="20" style="-fx-background-color: #4B0082; -fx-padding: 10;">
                 <ImageView fx:id="logoImage" fitHeight="100" preserveRatio="true" onMouseEntered="#onLogoHover" onMouseExited="#onLogoExit"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label text="Smart Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="AI" style="-fx-text-fill: white; -fx-background-color: black;" onAction="#toggleAISidebar"/>
-                <Button text="Settings" style="-fx-text-fill: white; -fx-background-color: black;"/>
-                <Button text="Account" style="-fx-text-fill: white; -fx-background-color: black;"/>
-                <Button text="Friends" style="-fx-text-fill: white; -fx-background-color: black;"/>
+                <Button text="AI" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;" onAction="#toggleAISidebar"/>
+                <Button text="Settings" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
+                <Button text="Account" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
+                <Button text="Friends" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
             </HBox>
 
             <!-- Month Navigation -->
-            <HBox spacing="10" style="-fx-background-color: #800080; -fx-padding: 10;">
-                <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: black;"/>
+            <HBox spacing="10" style="-fx-background-color: #4B0082; -fx-padding: 10;">
+                <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
                 <Label fx:id="monthLabel" text="April 2025" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
-                <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: black;"/>
+                <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
             </HBox>
 
             <!-- View Toggle Buttons -->
-            <HBox spacing="10" style="-fx-background-color: #800080; -fx-padding: 10;">
+            <HBox spacing="10" style="-fx-background-color: #4B0082; -fx-padding: 10;">
                 <Label text="View:" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-                <RadioButton fx:id="dayRadio" text="Day" onAction="#onDayView"/>
-                <RadioButton fx:id="weekRadio" text="Week" onAction="#onWeekView"/>
-                <RadioButton fx:id="monthRadio" text="Month"/>
+                <RadioButton fx:id="dayRadio" text="Day" onAction="#onDayView" style="-fx-text-fill: white;"/>
+                <RadioButton fx:id="weekRadio" text="Week" onAction="#onWeekView" style="-fx-text-fill: white;"/>
+                <RadioButton fx:id="monthRadio" text="Month" style="-fx-text-fill: white;"/>
             </HBox>
         </VBox>
 
@@ -46,7 +47,7 @@
             <!-- Week/Month View -->
             <VBox fx:id="weekView" alignment="TOP_CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
                 <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
-                    <GridPane fx:id="calendarGrid" hgap="0" vgap="0" style="-fx-padding: 20; -fx-background-color: #ccc;"/>
+                    <GridPane fx:id="calendarGrid" hgap="0" vgap="0" style="-fx-padding: 20; -fx-background-color: #E6E6FA;"/>
                         <!-- Will be populated dynamically -->
                 </ScrollPane>
             </VBox>
@@ -54,7 +55,7 @@
             <!-- Day View (initially hidden) -->
             <VBox fx:id="dayView" visible="false" managed="false" alignment="CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
                 <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
-                    <GridPane fx:id="dayGrid" hgap="10" vgap="10" style="-fx-padding: 20;"/>
+                    <GridPane fx:id="dayGrid" hgap="10" vgap="10" style="-fx-padding: 20; -fx-background-color: #E6E6FA;"/>
                         <!-- Will be populated dynamically in controller -->
                 </ScrollPane>
             </VBox>
@@ -62,10 +63,10 @@
     </VBox>
 
     <!-- Right section of the SplitPane (AI Sidebar) -->
-    <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="100000000">
-        <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16;" />
-        <TextArea promptText="Ask me anything..." prefRowCount="6"/>
-        <Button text="Send" />
+    <VBox fx:id="aiSidebar" style="-fx-background-color: #E6E6FA; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="100000000">
+        <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #1A1A1A;" />
+        <TextArea promptText="Ask me anything..." prefRowCount="6" style="-fx-text-fill: #1A1A1A;"/>
+        <Button text="Send" style="-fx-background-color: #CCCCFF; -fx-text-fill: #1A1A1A;" />
     </VBox>
 
 </SplitPane>

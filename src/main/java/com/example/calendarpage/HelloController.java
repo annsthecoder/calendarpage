@@ -231,18 +231,54 @@ public class HelloController {
     }
 
     private void renderWeekView() {
+        calendarGrid.getChildren().clear(); // Clear previous content
+
         LocalDate startOfWeek = currentDate.with(DayOfWeek.MONDAY);
-        int row = 1;
 
-        for (int col = 0; col < 7; col++) {
-            LocalDate day = startOfWeek.plusDays(col);
+        // Add day headers (Monday, Tuesday, etc.)
+        for (int col = 1; col <= 7; col++) {
+            LocalDate day = startOfWeek.plusDays(col - 1);
             Label dayLabel = new Label(day.getDayOfMonth() + " (" + day.getDayOfWeek().name().substring(0, 3) + ")");
-            calendarGrid.add(dayLabel, col, row);
+            dayLabel.setAlignment(Pos.CENTER);
+            dayLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            dayLabel.setStyle("-fx-font-weight: bold; -fx-background-color: #eee; -fx-border-color: #ccc; -fx-border-width: 0.5px;");
+            GridPane.setHgrow(dayLabel, Priority.ALWAYS);
+            GridPane.setVgrow(dayLabel, Priority.ALWAYS);
+            calendarGrid.add(dayLabel, col, 0);
+        }
 
-            for (int i = 0; i < 24; i++) {
-                String hour = (i < 12) ? String.format("%02d AM", i == 0 ? 12 : i) : String.format("%02d PM", i == 12 ? 12 : i - 12);
-                Label hourLabel = new Label(hour);
-                calendarGrid.add(hourLabel, col, i + 2);
+        // Add hour labels on the side (00:00 to 23:00)
+        for (int row = 1; row <= 24; row++) {
+            Label hourLabel = new Label(String.format("%02d:00", row - 1));
+            hourLabel.setAlignment(Pos.CENTER_RIGHT);
+            hourLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            hourLabel.setStyle("-fx-font-size: 10px; -fx-text-fill: #666;");
+            GridPane.setHgrow(hourLabel, Priority.ALWAYS);
+            GridPane.setVgrow(hourLabel, Priority.ALWAYS);
+            calendarGrid.add(hourLabel, 0, row);
+        }
+
+        // Add cells for each hour of each day
+        for (int col = 1; col <= 7; col++) {
+            for (int row = 1; row <= 24; row++) {
+                Label cell = new Label();
+                cell.setAlignment(Pos.CENTER);
+                cell.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+                // Bind font size to the width of the grid
+                cell.styleProperty().bind(
+                        Bindings.createStringBinding(() -> {
+                            double size = calendarGrid.getWidth() / 50;
+                            return String.format(
+                                    "-fx-font-size: %.2fpx; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-border-style: solid; -fx-alignment: center;",
+                                    size
+                            );
+                        }, calendarGrid.widthProperty())
+                );
+
+                GridPane.setHgrow(cell, Priority.ALWAYS);
+                GridPane.setVgrow(cell, Priority.ALWAYS);
+                calendarGrid.add(cell, col, row);
             }
         }
     }
