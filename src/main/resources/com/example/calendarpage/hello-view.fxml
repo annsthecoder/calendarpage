@@ -14,7 +14,7 @@
         <VBox>
             <!-- Main Navigation Bar -->
             <HBox spacing="20" style="-fx-background-color: #800080; -fx-padding: 10;">
-                <ImageView fx:id="logoImage" fitHeight="100" preserveRatio="true"/>
+                <ImageView fx:id="logoImage" fitHeight="100" preserveRatio="true" onMouseEntered="#onLogoHover" onMouseExited="#onLogoExit"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label text="Smart Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Region HBox.hgrow="ALWAYS"/>

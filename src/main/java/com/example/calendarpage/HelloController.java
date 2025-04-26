@@ -3,6 +3,7 @@ package com.example.calendarpage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -126,6 +127,18 @@ public class HelloController {
         dayView.setManaged(false);
         weekView.setVisible(true);
         weekView.setManaged(true);
+    }
+
+    @FXML
+    private void onLogoHover() {
+        logoImage.setScaleX(1.2);
+        logoImage.setScaleY(1.2);
+    }
+
+    @FXML
+    private void onLogoExit() {
+        logoImage.setScaleX(1.0);
+        logoImage.setScaleY(1.0);
     }
 
     // === Calendar Rendering hi harpi===
