@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.*?>
 
 <SplitPane fx:id="splitPane" orientation="HORIZONTAL" dividerPositions="0.75"
-           xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+           xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController"
+           prefHeight="Infinity">
 
     <!-- Left section of the SplitPane (Main Calendar/Content) -->
-    <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0">
+    <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0" VBox.vgrow="ALWAYS">
         <!-- Top Navigation -->
         <VBox>
             <!-- Main Navigation Bar -->
@@ -41,28 +42,25 @@
         </VBox>
 
         <!-- Center content -->
-        <StackPane>
+        <StackPane VBox.vgrow="ALWAYS">
             <!-- Week/Month View -->
-            <VBox fx:id="weekView" alignment="CENTER" style="-fx-padding: 20;">
-                <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;">
-                    <GridPane fx:id="calendarGrid" hgap="10" vgap="10" style="-fx-padding: 20;">
+            <VBox fx:id="weekView" alignment="TOP_CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
+                <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <GridPane fx:id="calendarGrid" hgap="50" vgap="50" style="-fx-padding: 20;"/>
                         <!-- Will be populated dynamically -->
-                    </GridPane>
                 </ScrollPane>
             </VBox>
 
             <!-- Day View (initially hidden) -->
-            <VBox fx:id="dayView" visible="false" managed="false" alignment="CENTER" style="-fx-padding: 20;">
-                <ScrollPane fitToWidth="true" fitToHeight="true">
-                    <GridPane fx:id="dayGrid" hgap="10" vgap="10" style="-fx-padding: 20;">
+            <VBox fx:id="dayView" visible="false" managed="false" alignment="CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
+                <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                    <GridPane fx:id="dayGrid" hgap="10" vgap="10" style="-fx-padding: 20;"/>
                         <!-- Will be populated dynamically in controller -->
-                    </GridPane>
                 </ScrollPane>
             </VBox>
         </StackPane>
     </VBox>
 
-    <!-- Right section of the SplitPane (AI Sidebar) -->
     <!-- Right section of the SplitPane (AI Sidebar) -->
     <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="100000000">
         <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16;" />

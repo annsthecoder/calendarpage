@@ -151,7 +151,7 @@ public class HelloController {
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         for (int i = 0; i < days.length; i++) {
             Label dayLabel = new Label(days[i]);
-            dayLabel.setStyle("-fx-font-weight: bold;");
+            dayLabel.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #444;");
             calendarGrid.add(dayLabel, i, 0);
         }
 
@@ -175,6 +175,7 @@ public class HelloController {
 
         for (int day = 1; day <= lastDay.getDayOfMonth(); day++) {
             Label label = new Label(String.valueOf(day));
+            label.setStyle("-fx-font-size: 26px; -fx-font-weight: normal;"); // 👈 change size here);
             calendarGrid.add(label, col, row);
 
             col++;
