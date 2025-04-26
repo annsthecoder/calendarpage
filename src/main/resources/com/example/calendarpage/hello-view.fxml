@@ -2,18 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
-<SplitPane orientation="HORIZONTAL" dividerPositions="0.75" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+<SplitPane fx:id="splitPane" orientation="HORIZONTAL" dividerPositions="0.75"
+        xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+
     <!-- Left section of the SplitPane (Main Calendar/Content) -->
     <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0">
-
         <!-- Top Navigation -->
         <VBox>
             <!-- Main Navigation Bar -->
             <HBox spacing="20" style="-fx-background-color: #800080; -fx-padding: 10;">
-<!--                <Button text="Logo" style="-fx-text-fill: white; -fx-background-color: black;"/>-->
                 <ImageView fx:id="logoImage" fitHeight="100" preserveRatio="true"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label text="Smart Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
@@ -63,6 +63,7 @@
     </VBox>
 
     <!-- Right section of the SplitPane (AI Sidebar) -->
+    <!-- Right section of the SplitPane (AI Sidebar) -->
     <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="100000000">
         <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16;" />
         <TextArea promptText="Ask me anything..." prefRowCount="6"/>
@@ -70,4 +71,3 @@
     </VBox>
 
 </SplitPane>
-
