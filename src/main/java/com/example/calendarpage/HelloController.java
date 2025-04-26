@@ -89,7 +89,7 @@ public class HelloController {
         weekView.setManaged(true);
     }
 
-    // === Calendar Rendering ===
+    // === Calendar Rendering hi harpi===
     private void updateCalendar() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         monthLabel.setText(currentDate.format(formatter));
