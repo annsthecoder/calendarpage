@@ -23,9 +23,9 @@
 
             <!-- Month Navigation -->
             <HBox spacing="10" style="-fx-background-color: #800080; -fx-padding: 10;">
-                <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: white;"/>
+                <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: black;"/>
                 <Label fx:id="monthLabel" text="April 2025" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
-                <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: white;"/>
+                <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: black;"/>
             </HBox>
 
             <!-- View Toggle Buttons -->
