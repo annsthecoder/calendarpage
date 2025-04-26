@@ -82,23 +82,3 @@
     </VBox>
 
 </SplitPane>
-
-
-        <!--            &lt;!&ndash; Day View (initially hidden) &ndash;&gt;-->
-<!--            <VBox fx:id="dayView" visible="false" managed="false" alignment="CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">-->
-<!--                <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">-->
-<!--                    <GridPane fx:id="dayGrid" hgap="10" vgap="10" style="-fx-padding: 20; -fx-background-color: #E6E6FA;"/>-->
-<!--                        &lt;!&ndash; Will be populated dynamically in controller &ndash;&gt;-->
-<!--                </ScrollPane>-->
-<!--            </VBox>-->
-<!--        </StackPane>-->
-<!--    </VBox>-->
-
-<!--    &lt;!&ndash; Right section of the SplitPane (AI Sidebar) &ndash;&gt;-->
-<!--    <VBox fx:id="aiSidebar" style="-fx-background-color: #E6E6FA; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="100000000">-->
-<!--        <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #1A1A1A;" />-->
-<!--        <TextArea promptText="Ask me anything..." prefRowCount="6" style="-fx-text-fill: #1A1A1A;"/>-->
-<!--        <Button text="Send" style="-fx-background-color: #CCCCFF; -fx-text-fill: #1A1A1A;" />-->
-<!--    </VBox>-->
-
-<!--</SplitPane>-->
