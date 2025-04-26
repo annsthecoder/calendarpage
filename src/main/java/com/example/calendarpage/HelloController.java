@@ -129,7 +129,6 @@ public class HelloController {
         weekView.setManaged(false);
         dayView.setVisible(true);
         dayView.setManaged(true);
-        populateDayView();
     }
 
     @FXML
@@ -284,24 +283,45 @@ public class HelloController {
     }
 
     private void renderDayView() {
-        // Optional placeholder for label
-        Label label = new Label(currentDate.getDayOfWeek().name() + " " + currentDate.getDayOfMonth());
-        calendarGrid.add(label, 0, 1);
-    }
-
-    private void populateDayView() {
         dayGrid.getChildren().clear();
 
         for (int hour = 0; hour < 24; hour++) {
+            // Create the time label (left side)
             Label timeLabel = new Label(String.format("%02d:00", hour));
-            timeLabel.setStyle("-fx-font-weight: bold;");
-            Label eventSlot = new Label(); // Empty cell for now
+            timeLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+            timeLabel.setPrefHeight(40);
+            timeLabel.setMaxWidth(Double.MAX_VALUE);
+            timeLabel.setAlignment(Pos.CENTER_RIGHT);
 
+            // Create the event slot (right side)
+            Label eventSlot = new Label(); // Empty for now
             eventSlot.setPrefHeight(40);
-            eventSlot.setStyle("-fx-border-color: #ccc;");
+            eventSlot.setMaxWidth(Double.MAX_VALUE);
+            eventSlot.setStyle("-fx-border-color: #ccc; -fx-border-width: 0 0 1px 0;"); // Bottom line only
+            eventSlot.setAlignment(Pos.CENTER_LEFT);
 
-            dayGrid.add(timeLabel, 0, hour); // Time
-            dayGrid.add(eventSlot, 1, hour); // Event cell
+            // Add both to the grid
+            dayGrid.add(timeLabel, 0, hour); // Column 0 = Time
+            dayGrid.add(eventSlot, 1, hour); // Column 1 = Event
+
+            // These are now optional, because column constraints handle the stretching
+            // GridPane.setHgrow(timeLabel, Priority.ALWAYS);
+            GridPane.setHgrow(eventSlot, Priority.ALWAYS);
         }
     }
+//    private void populateDayView() {
+//        dayGrid.getChildren().clear();
+//
+//        for (int hour = 0; hour < 24; hour++) {
+//            Label timeLabel = new Label(String.format("%02d:00", hour));
+//            timeLabel.setStyle("-fx-font-weight: bold;");
+//            Label eventSlot = new Label(); // Empty cell for now
+//
+//            eventSlot.setPrefHeight(40);
+//            eventSlot.setStyle("-fx-border-color: #ccc;");
+//
+//            dayGrid.add(timeLabel, 0, hour); // Time
+//            dayGrid.add(eventSlot, 1, hour); // Event cell
+//        }
+//    }
 }
