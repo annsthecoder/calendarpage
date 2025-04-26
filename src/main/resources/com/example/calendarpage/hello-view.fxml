@@ -46,7 +46,7 @@
             <!-- Week/Month View -->
             <VBox fx:id="weekView" alignment="TOP_CENTER" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
                 <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
-                    <GridPane fx:id="calendarGrid" hgap="50" vgap="50" style="-fx-padding: 20;"/>
+                    <GridPane fx:id="calendarGrid" hgap="0" vgap="0" style="-fx-padding: 20; -fx-background-color: #ccc;"/>
                         <!-- Will be populated dynamically -->
                 </ScrollPane>
             </VBox>

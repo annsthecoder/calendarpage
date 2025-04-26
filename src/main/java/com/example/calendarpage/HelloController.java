@@ -1,10 +1,13 @@
 package com.example.calendarpage;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.time.DayOfWeek;
@@ -88,6 +91,14 @@ public class HelloController {
         monthRadio.setToggleGroup(viewToggleGroup);
         monthRadio.setSelected(true); // Default view
 
+//        // Bind hgap and vgap to window size
+//        calendarGrid.hgapProperty().bind(
+//                Bindings.createDoubleBinding(() -> Math.max(calendarGrid.getWidth() / 50, 10), calendarGrid.widthProperty())
+//        );
+//        calendarGrid.vgapProperty().bind(
+//                Bindings.createDoubleBinding(() -> Math.max(calendarGrid.getHeight() / 50, 10), calendarGrid.heightProperty())
+//        );
+
         // Listen for view changes
         viewToggleGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -151,7 +162,24 @@ public class HelloController {
         String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         for (int i = 0; i < days.length; i++) {
             Label dayLabel = new Label(days[i]);
-            dayLabel.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #444;");
+            dayLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            dayLabel.setAlignment(Pos.CENTER);
+            GridPane.setHgrow(dayLabel, Priority.ALWAYS);
+            GridPane.setVgrow(dayLabel, Priority.ALWAYS);
+
+            // Allow font size to change according to window size
+            dayLabel.styleProperty().bind(
+                    Bindings.createStringBinding(() -> {
+                        double size = calendarGrid.getWidth() / 50;
+                        return String.format(
+                                "-fx-font-size: %.2fpx; -fx-font-weight: bold; -fx-text-fill: #444; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-border-style: solid; -fx-alignment: center; -fx-background-color: #f2f2f2;",
+                                size
+                        );
+                    }, calendarGrid.widthProperty())
+            );
+
+            GridPane.setHgrow(dayLabel, Priority.ALWAYS);
+            GridPane.setVgrow(dayLabel, Priority.ALWAYS);
             calendarGrid.add(dayLabel, i, 0);
         }
 
@@ -169,13 +197,29 @@ public class HelloController {
         LocalDate firstDay = currentDate.withDayOfMonth(1);
         LocalDate lastDay = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
 
-        int startCol = firstDay.getDayOfWeek().getValue() % 7; // Make Monday = 0
+        int startCol = (firstDay.getDayOfWeek().getValue() + 6) % 7; // Monday = 0, Sunday = 6
         int row = 1;
         int col = startCol;
 
         for (int day = 1; day <= lastDay.getDayOfMonth(); day++) {
             Label label = new Label(String.valueOf(day));
-            label.setStyle("-fx-font-size: 26px; -fx-font-weight: normal;"); // 👈 change size here);
+            label.setAlignment(Pos.CENTER);
+            label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            GridPane.setHgrow(label, Priority.ALWAYS);
+            GridPane.setVgrow(label, Priority.ALWAYS);
+            // bind the font size to the grid cell width
+            label.styleProperty().bind(
+                    Bindings.createStringBinding(() -> {
+                        double size = calendarGrid.getWidth() / 40;
+                        return String.format(
+                                "-fx-font-size: %.2fpx; -fx-text-fill: black; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-border-style: solid; -fx-alignment: center;",
+                                size
+                        );
+                    }, calendarGrid.widthProperty())
+            );
+
+            GridPane.setHgrow(label, Priority.ALWAYS);
+            GridPane.setVgrow(label, Priority.ALWAYS);
             calendarGrid.add(label, col, row);
 
             col++;
