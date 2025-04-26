@@ -10,6 +10,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class HelloController {
 
     // === FXML UI Elements ===
@@ -17,6 +20,7 @@ public class HelloController {
     @FXML private GridPane calendarGrid;
     @FXML private GridPane weekGrid;
     @FXML private GridPane dayGrid;
+    @FXML private ImageView logoImage;
 
     @FXML private VBox weekView;
     @FXML private VBox dayView;
@@ -41,6 +45,10 @@ public class HelloController {
     // === Initialization ===
     @FXML
     public void initialize() {
+        // Load logo image
+        Image logo = new Image(getClass().getResourceAsStream("/images/logo.png"));
+        logoImage.setImage(logo);
+
         // Set up toggle group
         viewToggleGroup = new ToggleGroup();
         dayRadio.setToggleGroup(viewToggleGroup);
