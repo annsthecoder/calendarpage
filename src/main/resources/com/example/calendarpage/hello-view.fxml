@@ -8,7 +8,7 @@
     <!-- Left section of the SplitPane (Main Calendar/Content) -->
     <VBox fx:id="mainContent" style="-fx-padding: 20;">
 
-        <!-- Top Navigation -->
+        <!-- Top Navigation -edw->
         <VBox>
             <!-- Main Navigation Bar -->
             <HBox spacing="20" style="-fx-background-color: #800080; -fx-padding: 10;">
