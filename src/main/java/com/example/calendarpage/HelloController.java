@@ -22,12 +22,30 @@ public class HelloController {
     @FXML private VBox dayView;
 
     @FXML private VBox aiSidebar;
+    @FXML
+    private SplitPane splitPane;
+
+    @FXML
+    private VBox mainContent;
+
 
     @FXML
     private void toggleAISidebar() {
+        // Check current visibility state
         boolean currentlyVisible = aiSidebar.isVisible();
+
+        // Toggle the visibility and manage state
         aiSidebar.setVisible(!currentlyVisible);
         aiSidebar.setManaged(!currentlyVisible);
+
+        // Update the SplitPane divider position
+        if (!currentlyVisible) {
+            // Show the AI sidebar fully
+            splitPane.setDividerPositions(0.75); // Adjust this value to suit your layout
+        } else {
+            // Hide the AI sidebar
+            splitPane.setDividerPositions(1.0); // Fully collapse the sidebar
+        }
     }
 
     @FXML private ToggleGroup viewToggleGroup;

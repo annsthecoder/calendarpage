@@ -4,9 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane orientation="HORIZONTAL" dividerPositions="0.75" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
-    <!-- Left section of the SplitPane (Main Calendar/Content) -->
-    <VBox fx:id="mainContent" style="-fx-padding: 20;">
+<SplitPane fx:id="splitPane" orientation="HORIZONTAL" dividerPositions="0.75" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.HelloController">
+
+    <!-- Left section (Main Calendar/Content) -->
+    <VBox fx:id="mainContent" style="-fx-padding: 20;" minWidth="0">
 
         <!-- Top Navigation -->
         <VBox>
@@ -60,8 +61,8 @@
         </StackPane>
     </VBox>
 
-    <!-- Right section of the SplitPane (AI Sidebar) -->
-    <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="150" maxWidth="600">
+    <!-- Right section (AI Sidebar) -->
+    <VBox fx:id="aiSidebar" style="-fx-background-color: #e6e6fa; -fx-padding: 20;" prefWidth="300" minWidth="0" maxWidth="10000000000">
         <Label text="AI Assistant" style="-fx-font-weight: bold; -fx-font-size: 16;" />
         <TextArea promptText="Ask me anything..." prefRowCount="6"/>
         <Button text="Send" />
