@@ -21,7 +21,7 @@
                 <Label text="The Ultimate Calendar" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                 <Region HBox.hgrow="ALWAYS"/>
                 <Button text="AI" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;" onAction="#toggleAISidebar"/>
-                <Button text="Settings" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
+                <Button text="Settings" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;" onAction="#openSettingsPage"/>
                 <Button text="Account" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
                 <Button text="Friends" style="-fx-text-fill: #1A1A1A; -fx-background-color: #CCCCFF;"/>
             </HBox>

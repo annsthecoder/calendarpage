@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.calendarpage.SettingsController">
+    <Label text="Settings Page" style="-fx-font-size: 24px; -fx-text-fill: #4B0082;" />
+</VBox>
+
