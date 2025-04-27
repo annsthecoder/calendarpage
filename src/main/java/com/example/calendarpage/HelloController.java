@@ -10,6 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -179,6 +184,29 @@ public class HelloController {
             userInputArea.clear();
         }
     }
+
+    @FXML
+    private void openSettingsPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/calendarpage/settings-view.fxml"));
+            Parent settingsRoot = loader.load();
+
+            Stage settingsStage = new Stage();
+            settingsStage.setTitle("Settings");
+
+            Scene scene = new Scene(settingsRoot);
+
+            settingsStage.setScene(scene);
+
+            // 🌟 Set it to full screen
+            settingsStage.setMaximized(true); // This maximizes the window
+
+            settingsStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Example simple AI response ****NEED TO BE REPLACED WHEN AI SET UP*******
     private String generateResponse(String userInput) {
