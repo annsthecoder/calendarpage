@@ -73,6 +73,8 @@ public class HelloController {
     @FXML private RadioButton dayRadio;
     @FXML private RadioButton weekRadio;
     @FXML private RadioButton monthRadio;
+    @FXML private TextArea userInputArea;
+    @FXML private VBox responseArea;
 
     // === State ===
     private LocalDate currentDate = LocalDate.now();
@@ -149,6 +151,57 @@ public class HelloController {
     private void onLogoExit() {
         logoImage.setScaleX(1.0);
         logoImage.setScaleY(1.0);
+    }
+
+    // AI response
+    @FXML
+    private void onSendButtonClick() {
+        String userInput = userInputArea.getText().trim();
+        if (!userInput.isEmpty()) {
+            Label responseLabel = new Label("AI says: " + generateResponse(userInput));
+            responseLabel.setWrapText(true);
+            responseLabel.setStyle("-fx-background-color: #D8B9FF; -fx-padding: 10; -fx-background-radius: 10; -fx-text-fill: #1A1A1A;");
+
+            // Add the label to the response area
+            responseArea.getChildren().add(responseLabel);
+
+            // Check if there are more than 3 responses
+            if (responseArea.getChildren().size() > 3) {
+                // Remove the oldest (first) response
+                responseArea.getChildren().remove(0);
+            }
+
+            // Show AI Response with animated typing
+            String fullText = "AI says: " + generateResponse(userInput);
+            playTypingAnimation(responseLabel, fullText);
+
+            // Clear the user input
+            userInputArea.clear();
+        }
+    }
+
+    // Example simple AI response ****NEED TO BE REPLACED WHEN AI SET UP*******
+    private String generateResponse(String userInput) {
+        return "You said \"" + userInput;
+    }
+
+    // Just a fun animation effect which shows AI typing while it generates a response
+    private void playTypingAnimation(Label label, String fullText) {
+        final int[] charIndex = {0};
+
+        javafx.animation.Timeline timeline = new javafx.animation.Timeline(
+                new javafx.animation.KeyFrame(
+                        javafx.util.Duration.millis(40), // Speed of typing
+                        event -> {
+                            if (charIndex[0] < fullText.length()) {
+                                label.setText(fullText.substring(0, charIndex[0] + 1));
+                                charIndex[0]++;
+                            }
+                        }
+                )
+        );
+        timeline.setCycleCount(fullText.length());
+        timeline.play();
     }
 
     // === Calendar Rendering hi harpi===
