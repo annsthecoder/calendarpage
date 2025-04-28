@@ -58,20 +58,11 @@ public class HelloController {
     @FXML
     private VBox mainContent;
 
+    @FXML
+    private ComboBox<String> monthComboBox;
+    @FXML
+    private ComboBox<Integer> yearComboBox;
 
-
-//    @FXML
-//    private void toggleAISidebar() {
-//        boolean isVisible = aiSidebar.isVisible();
-//        aiSidebar.setVisible(!isVisible);
-//        aiSidebar.setManaged(!isVisible);
-//
-//        if (!isVisible) {
-//            splitPane.setDividerPositions(0.2); // adjust this as you like
-//        } else {
-//            splitPane.setDividerPositions(0.5);
-//        }
-//    }
 
     @FXML
     private ToggleGroup viewToggleGroup;
@@ -100,6 +91,24 @@ public class HelloController {
         Image logo = new Image(getClass().getResourceAsStream("/images/logo.png"));
         logoImage.setImage(logo);
 
+        // Initialize ComboBoxes
+        monthComboBox.getItems().addAll(
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        );
+
+        int currentYear = LocalDate.now().getYear();
+        int minYear = currentYear - 10;
+        int maxYear = currentYear + 50;
+
+        for (int year = minYear; year <= maxYear + 10; year++) {
+            yearComboBox.getItems().add(year);
+        }
+
+        // Set up combo boxes
+        monthComboBox.setValue(currentDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+        yearComboBox.setValue(currentDate.getYear());
+
         // Set up toggle group
         viewToggleGroup = new ToggleGroup();
         dayRadio.setToggleGroup(viewToggleGroup);
@@ -121,15 +130,15 @@ public class HelloController {
 
     // === Navigation Buttons ===
     @FXML
-    private void onPreviousMonth() {
-        currentDate = currentDate.minusMonths(1);
-        updateCalendar();
-    }
+    private void onMonthYearSelected() {
+        String selectedMonth = monthComboBox.getValue();
+        Integer selectedYear = yearComboBox.getValue();
 
-    @FXML
-    private void onNextMonth() {
-        currentDate = currentDate.plusMonths(1);
-        updateCalendar();
+        if (selectedMonth != null && selectedYear != null) {
+            int monthNumber = monthComboBox.getItems().indexOf(selectedMonth) + 1; // January = 0, so +1
+            currentDate = LocalDate.of(selectedYear, monthNumber, 1);
+            updateCalendar();
+        }
     }
 
     // === View Handlers ===
@@ -682,4 +691,5 @@ public class HelloController {
             GridPane.setHgrow(eventSlot, Priority.ALWAYS);
         }
     }
+
 }
