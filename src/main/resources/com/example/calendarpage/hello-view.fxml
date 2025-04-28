@@ -21,20 +21,26 @@
                 <Region HBox.hgrow="ALWAYS"/>
             </HBox>
 
-            <!-- Month Navigation -->
-            <HBox spacing="10" style="-fx-padding: 10;">
-                <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
-                <Label fx:id="monthLabel" text="April 2025" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
-                <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
-            </HBox>
+            <HBox spacing="10" style="-fx-padding: 10; -fx-alignment: center;">
 
-            <!-- View Toggle Buttons -->
-            <HBox spacing="10" style="-fx-padding: 10;">
-                <Label text="View:" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
-                <RadioButton fx:id="dayRadio" text="Day" onAction="#onDayView" style="-fx-text-fill: white;"/>
-                <RadioButton fx:id="weekRadio" text="Week" onAction="#onWeekView" style="-fx-text-fill: white;"/>
-                <RadioButton fx:id="monthRadio" text="Month" onAction="#onMonthView" style="-fx-text-fill: white;"/>
-                <RadioButton fx:id="yearRadio" text="Year" onAction="#onYearView" style="-fx-text-fill: white;"/>
+                <!-- Month Navigation -->
+                <HBox spacing="10" style="-fx-padding: 10; -fx-alignment: center;">
+                    <Button text="Previous Month" onAction="#onPreviousMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
+                    <Label fx:id="monthLabel" text="April 2025" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <Button text="Next Month" onAction="#onNextMonth" style="-fx-text-fill: #1A1A1A; -fx-background-color: #D8B9FF;"/>
+                </HBox>
+
+                <!-- Spacer to push the view toggle buttons to the right -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- View Toggle Buttons -->
+                <HBox spacing="10" style="-fx-padding: 10; -fx-alignment: center;">
+                    <Label text="View:" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <RadioButton fx:id="dayRadio" text="Day" onAction="#onDayView" style="-fx-text-fill: white;"/>
+                    <RadioButton fx:id="weekRadio" text="Week" onAction="#onWeekView" style="-fx-text-fill: white;"/>
+                    <RadioButton fx:id="monthRadio" text="Month" onAction="#onMonthView" style="-fx-text-fill: white;"/>
+                    <RadioButton fx:id="yearRadio" text="Year" onAction="#onYearView" style="-fx-text-fill: white;"/>
+                </HBox>
             </HBox>
         </VBox>
 
