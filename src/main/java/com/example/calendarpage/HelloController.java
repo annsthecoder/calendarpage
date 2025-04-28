@@ -20,7 +20,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -381,6 +380,8 @@ public class HelloController {
         int col = startCol;
 
         for (int day = 1; day <= lastDay.getDayOfMonth(); day++) {
+            final int currentDay = day;
+
             Label label = new Label(String.valueOf(day));
             label.setAlignment(Pos.CENTER);
             label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -388,10 +389,17 @@ public class HelloController {
             label.styleProperty().bind(
                     Bindings.createStringBinding(() -> {
                         double size = monthGrid.getWidth() / 40;
-                        return String.format(
+                        String style = String.format(
                                 "-fx-font-size: %.2fpx; -fx-text-fill: black; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-border-style: solid;",
                                 size
                         );
+
+                        // Check if this label represents today's date
+                        LocalDate dateForLabel = currentDate.withDayOfMonth(currentDay);
+                        if (dateForLabel.isEqual(LocalDate.now())) {
+                            style += "-fx-background-color: rgba(216, 185, 255, 0.4); -fx-border-color: #D8B9FF; -fx-border-width: 2px; -fx-border-radius: 20px; -fx-background-radius: 20px;";
+                        }
+                        return style;
                     }, monthGrid.widthProperty())
             );
 
@@ -415,11 +423,34 @@ public class HelloController {
         // Add day headers (Monday, Tuesday, etc.)
         for (int col = 1; col <= 7; col++) {
             LocalDate day = startOfWeek.plusDays(col - 1);
+            final LocalDate currentDay = day; // Make it final for lambda usage
+
             Label dayLabel = new Label(day.getDayOfMonth() + " (" + day.getDayOfWeek().name().substring(0, 3) + ")");
             dayLabel.setAlignment(Pos.CENTER);
             dayLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            dayLabel.setStyle("-fx-font-weight: bold; -fx-background-color: #eee; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-font-size: 18px;");
             dayLabel.setMinHeight(60);
+
+            dayLabel.styleProperty().bind(
+                    Bindings.createStringBinding(() -> {
+                        double size = weekGrid.getWidth() / 40;
+                        String baseStyle = String.format(
+                                "-fx-font-size: %.2fpx; -fx-font-weight: bold; -fx-background-color: #eee; -fx-border-color: #ccc; -fx-border-width: 0.5px;",
+                                size
+                        );
+
+                        // If the current day is today, apply the highlight
+                        if (currentDay.isEqual(LocalDate.now())) {
+                            baseStyle += "-fx-background-color: rgba(216,185,255,0.5); "
+                                    + "-fx-border-color: #D8B9FF; "
+                                    + "-fx-border-width: 2px; "
+                                    + "-fx-border-radius: 20px; "
+                                    + "-fx-background-radius: 20px;";
+                        }
+
+                        return baseStyle;
+                    }, weekGrid.widthProperty())
+            );
+
             GridPane.setHgrow(dayLabel, Priority.ALWAYS);
             GridPane.setVgrow(dayLabel, Priority.ALWAYS);
             weekGrid.add(dayLabel, col, 0); // Using weekGrid
@@ -472,6 +503,16 @@ public class HelloController {
             dayGrid.getRowConstraints().add(rowConstraints);
         }
 
+        // Create and add the date label at the top (spanning both columns)
+        Label dateLabel = new Label(LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+        dateLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-padding: 1px;");
+        dateLabel.setAlignment(Pos.TOP_LEFT);
+        dateLabel.setMaxWidth(Double.MAX_VALUE);
+        dateLabel.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setColumnSpan(dateLabel, 2); // Span across both columns (time and event columns)
+        dayGrid.add(dateLabel, 0, 0); // Place it in the first row (row 0)
+
+        // Create the hourly labels and event slots
         for (int hour = 0; hour < 24; hour++) {
             // Create the time label (left side)
             Label timeLabel = new Label(String.format("%02d:00", hour));
@@ -488,11 +529,10 @@ public class HelloController {
             eventSlot.setAlignment(Pos.CENTER_LEFT);
 
             // Add both to the grid
-            dayGrid.add(timeLabel, 0, hour); // Column 0 = Time
-            dayGrid.add(eventSlot, 1, hour); // Column 1 = Event
+            dayGrid.add(timeLabel, 0, hour + 1); // Column 0 = Time (shifted by 1 row)
+            dayGrid.add(eventSlot, 1, hour + 1); // Column 1 = Event (shifted by 1 row)
 
-            // These are now optional, because column constraints handle the stretching
-            // GridPane.setHgrow(timeLabel, Priority.ALWAYS);
+            // Optional: GridPane.setHgrow(timeLabel, Priority.ALWAYS);
             GridPane.setHgrow(eventSlot, Priority.ALWAYS);
         }
     }
@@ -559,6 +599,8 @@ public class HelloController {
 
                 // Add the actual days to the mini month grid
                 for (int day = 1; day <= lastDay.getDayOfMonth(); day++) {
+                    final int currentDay = day;
+
                     Label dayLabel = new Label(String.valueOf(day));
                     dayLabel.setAlignment(Pos.CENTER);
                     dayLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -567,11 +609,17 @@ public class HelloController {
                     dayLabel.styleProperty().bind(
                             Bindings.createStringBinding(() -> {
                                 double size = miniMonthGrid.getWidth() / 10; // Adjust size based on mini grid
-                                return String.format(
+                                String style = String.format(
                                         "-fx-font-size: 18px; -fx-text-fill: black; -fx-border-color: #ccc; -fx-border-width: 0.5px; -fx-border-style: solid;",
                                         size
                                 );
-                            }, miniMonthGrid.widthProperty()) // Use miniMonthGrid width for font size binding
+
+                                LocalDate dateForLabel = firstDay.withDayOfMonth(currentDay); // Use currentDay now
+                                if (dateForLabel.isEqual(LocalDate.now())) {
+                                    style += "-fx-background-color: rgba(216, 185, 255, 0.4); -fx-border-color: D8B9FF; -fx-border-width: 2px; -fx-border-radius: 18px; -fx-background-radius: 18px;";
+                                }
+                                return style;
+                            }, miniMonthGrid.widthProperty())
                     );
 
                     GridPane.setHgrow(dayLabel, Priority.ALWAYS);
@@ -634,8 +682,4 @@ public class HelloController {
             GridPane.setHgrow(eventSlot, Priority.ALWAYS);
         }
     }
-
-
-
-
 }
